@@ -7,13 +7,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install Node v17
+      - name: Install Node v16
         uses: actions/setup-node@v3
         with:
-          node-version: 17
+          node-version: 16
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: npm install --immutable
 
       - name: Run ESLint
-        run: yarn lint
+        run: npm lint
