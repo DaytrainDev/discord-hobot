@@ -12,9 +12,10 @@ export class Client extends DiscordClient {
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMembers,
         GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.GuildScheduledEvents,
         GatewayIntentBits.MessageContent,
       ],
-      partials: [Partials.Channel, Partials.User, Partials.GuildMember, Partials.Message],
+      partials: [Partials.Channel, Partials.User, Partials.GuildMember, Partials.Message, Partials.GuildScheduledEvent],
       failIfNotExists: false,
       allowedMentions: {
         parse: ['users'],

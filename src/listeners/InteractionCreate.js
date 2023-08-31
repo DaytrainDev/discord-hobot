@@ -6,11 +6,11 @@ export default class InteractionCreate extends Event {
     this.eventName = 'interactionCreate';
   }
 
-  execute(client, interaction) {
-    if (!interaction.isChatInputCommand()) return;
+  async execute(client, interaction) {
+    if (!(interaction.isChatInputCommand() || interaction.isAutocomplete)) return;
 
     const command = client.commands.getCommand(interaction.commandName);
 
-    command?.execute({ interaction });
+    await command?.execute({ interaction });
   }
 }

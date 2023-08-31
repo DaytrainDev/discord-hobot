@@ -1,30 +1,32 @@
 {
-  "name": "javascript-discord-boilerplate",
-  "description": "A boilerplate for Javascript discord bot applications.",
-  "version": "0.0.0",
-  "private": true,
+  "name": "fumblebot",
+  "description": "A Discord bot for TTRPG Gaming based on the boilerplate by Nicolas Ribeiro",
+  "version": "0.0.1",
+  "private": false,
   "main": "./src/Launcher.js",
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "https://github.com/whoisniskii/javascript-discord-boilerplate.git"
+    "url": "https://github.com/Crit-Fumble/FumbleBot.git"
   },
   "bugs": {
-    "url": "https://github.com/whoisniskii/javascript-discord-boilerplate/issues"
+    "url": "https://github.com/Crit-Fumble/FumbleBot/issues"
   },
-  "homepage": "https://github.com/whoisniskii/javascript-discord-boilerplate#readme",
+  "homepage": "https://github.com/Crit-Fumble/FumbleBot#readme",
   "scripts": {
     "lint": "npx eslint src",
     "lint:fix": "npx eslint src --fix",
+    "develop": "cd src && node --max_old_space_size=512 --optimize_for_size --expose-gc --gc-interval=1 Launcher.js",
     "start": "cd src && node --max_old_space_size=512 --optimize_for_size --expose-gc --gc-interval=1 Launcher.js"
   },
   "license": "MIT",
   "engines": {
-    "node": ">=16.9.0"
+    "node": "17.9.1"
   },
-  "author": "Nicolas Ribeiro <niskii@denkylabs.com>",
+  "author": "Crit Fumble Gaming <crit.fumble.web@gmail.com>",
   "dependencies": {
-    "discord.js": "14.0.3",
+    "chrono-node": "^2.6.5",
+    "discord.js": "14.13.0",
     "dotenv": "16.0.1",
     "winston": "3.8.1"
   },
