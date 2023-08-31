@@ -5,7 +5,7 @@ export default class PingCommand extends Command {
   constructor(client) {
     super(client, {
       name: 'help',
-      description: 'Help fds',
+      description: 'A summary of commands.',
       type: ApplicationCommandType.ChatInput,
     });
   }
@@ -16,9 +16,16 @@ export default class PingCommand extends Command {
         {
           color: 0x7289da,
           title: 'Commands',
-          description: 'A list of FumbleBot commands (WIP)',
+          description: 'A list of FumbleBot commands.',
+          fields: [
+            {
+              name: 'timestamp',
+              value: 'Reads a date and returns a timestamp',
+            },
+          ],
         },
       ],
+      ephemeral: true,
     });
   }
 }
