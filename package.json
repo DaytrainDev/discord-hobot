@@ -3,7 +3,7 @@
   "description": "A Discord bot for TTRPG Gaming based on the boilerplate by Nicolas Ribeiro",
   "version": "0.0.1",
   "private": false,
-  "main": "./src/Launcher.js",
+  "main": "./src/server.js",
   "type": "module",
   "repository": {
     "type": "git",
@@ -16,8 +16,8 @@
   "scripts": {
     "lint": "npx eslint src",
     "lint:fix": "npx eslint src --fix",
-    "develop": "cd src && node --max_old_space_size=512 --optimize_for_size --expose-gc --gc-interval=1 Launcher.js",
-    "start": "cd src && node --max_old_space_size=512 --optimize_for_size --expose-gc --gc-interval=1 Launcher.js"
+    "develop": "cd src && node --max_old_space_size=512 --optimize_for_size --expose-gc --gc-interval=1 server.js",
+    "start": "cd src && node --max_old_space_size=512 --optimize_for_size --expose-gc --gc-interval=1 server.js"
   },
   "license": "MIT",
   "engines": {
