@@ -35,8 +35,6 @@ export default class InteractionCreate extends Event {
         content: `Assume the role of FumbleBot, a chat bot on the TTRPG and Co-op Gaming Community, Crit Fumble Gaming's (CFG), Discord Server. ${'Contribute, comment, or assist as needed.'}`,
       });
 
-      console.info(messages.map(m => m?.content)?.join('\n\n'));
-
       const completionPromise = this.openAi.createChatCompletion({
         messages,
         model: 'gpt-3.5-turbo',

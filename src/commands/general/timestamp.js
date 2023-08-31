@@ -23,7 +23,6 @@ export default class TimestampCommand extends Command {
 
     const dateString = interaction.options.getString('datetime');
     const parseDate = (dateString ? (chrono.parseDate(dateString).valueOf() / 1000) : now);
-    console.log(parseDate);
     if (Number.isNaN(parseDate)) {
       return interaction.editReply({
         content: `\`${dateString}\` is not a valid date/time. See [Date.parse() JavaScript Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse)`,
