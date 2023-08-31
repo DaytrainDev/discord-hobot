@@ -8,6 +8,7 @@ export class CommandManager {
   }
 
   async loadCommands(client) {
+    console.info(await readdir('./'));
     const categories = await readdir('./commands/');
     for await (const category of categories) {
       const commands = await readdir(`./commands/${category}`);
