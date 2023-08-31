@@ -18,8 +18,8 @@
     "lint": "npx eslint src",
     "lint:fix": "npx eslint src --fix",
     "develop": "cd src && node --max_old_space_size=512 --optimize_for_size --expose-gc --gc-interval=1 Launcher.js",
-    "start": "cd dist && node -r @babel/register dist/Launcher.js",
-    "start:do": "node -r @babel/register Launcher.js",
+    "start": "cd src && node --max_old_space_size=512 --optimize_for_size --expose-gc --gc-interval=1 Launcher.js",
+    "start:do": "node --max_old_space_size=512 --optimize_for_size --expose-gc --gc-interval=1 Launcher.js",
     "docker:down": "docker-compose down",
     "docker:up": "docker-compose up"
   },
