@@ -3,7 +3,7 @@
   "description": "A Discord bot for TTRPG Gaming based on the boilerplate by Nicolas Ribeiro",
   "version": "0.0.1",
   "private": false,
-  "main": "./src/server.js",
+  "main": "./src/Launcher.js",
   "type": "module",
   "repository": {
     "type": "git",
@@ -14,14 +14,17 @@
   },
   "homepage": "https://github.com/Crit-Fumble/FumbleBot#readme",
   "scripts": {
+    "build": "babel src -d dist",
     "lint": "npx eslint src",
     "lint:fix": "npx eslint src --fix",
-    "develop": "cd src && node --max_old_space_size=512 --optimize_for_size --expose-gc --gc-interval=1 server.js",
-    "start": "cd src && node --max_old_space_size=512 --optimize_for_size --expose-gc --gc-interval=1 server.js"
+    "develop": "cd src && node --max_old_space_size=512 --optimize_for_size --expose-gc --gc-interval=1 Launcher.js",
+    "start": "cd src && node --max_old_space_size=512 --optimize_for_size --expose-gc --gc-interval=1 Launcher.js",
+    "docker:down": "docker-compose down",
+    "docker:up": "docker-compose up"
   },
   "license": "MIT",
   "engines": {
-    "node": "17.9.1"
+    "node": "16.20.2"
   },
   "author": "Crit Fumble Gaming <crit.fumble.web@gmail.com>",
   "dependencies": {
@@ -29,11 +32,15 @@
     "chrono-node": "^2.6.5",
     "discord.js": "14.13.0",
     "dotenv": "16.0.1",
-    "winston": "3.8.1",
+    "gpt-3-encoder": "^1.1.4",
     "openai": "^3.3.0",
-    "gpt-3-encoder": "^1.1.4"
+    "vite": "^4.4.9",
+    "winston": "3.8.1"
   },
   "devDependencies": {
+    "@babel/cli": "^7.22.10",
+    "@babel/core": "^7.22.11",
+    "@babel/preset-env": "^7.22.14",
     "eslint": "8.2.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-plugin-import": "2.25.2"
