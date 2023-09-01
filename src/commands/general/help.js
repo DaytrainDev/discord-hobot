@@ -19,8 +19,20 @@ export default class PingCommand extends Command {
           description: 'A list of FumbleBot commands.',
           fields: [
             {
-              name: 'timestamp',
+              name: `@FumbleBot`,
+              value: '@ mention FumbleBot and it will reply',
+            },
+            {
+              name: '/timestamp',
               value: 'Reads a date and returns a timestamp',
+            },
+            {
+              name: '/write',
+              value: 'Generates an image in response to a prompt',
+            },
+            {
+              name: '/imagine',
+              value: 'Writes some text in response to a prompt',
             },
           ],
         },

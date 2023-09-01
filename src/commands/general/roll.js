@@ -13,6 +13,12 @@ export default class TimestampCommand extends Command {
           type: ApplicationCommandOptionType.String,
           name: 'roll_string',
           description: 'Ex:`1d12+5`, `2d20kl1 + 1d4 + 4`',
+          required: true,
+        },
+        {
+          type: ApplicationCommandOptionType.String,
+          name: 'roll_description',
+          description: 'Ex:`I cast lightning bolt at the three orcs!`',
         },
       ],
     });
@@ -20,9 +26,11 @@ export default class TimestampCommand extends Command {
 
   execute({ interaction }) {
     const rollString = interaction.options.getString('roll_string');
+    const rollDescription = interaction.options.getString('roll_description');
     const rollResult = diceRoller(rollString);
-    return interaction.reply({
-      content: `\`${rollResult.rollStr}\` => \`${rollResult.rolls}\` => \`${rollResult.total}\``,
-    });
+    // TODO: speack as character
+    const content = `${rollDescription ? `${rollDescription}\n` : ''}\`${rollResult.rollStr}\` => \`${rollResult.rolls}\` => \`${rollResult.total}\``;
+
+    return interaction.reply({ content });
   }
 }
