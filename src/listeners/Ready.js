@@ -1,5 +1,6 @@
 import { Event } from '../structures/Event.js';
 
+// TODO: run an init command to schedule cron jobs through cron-node and cron.schedule
 export default class Ready extends Event {
   constructor() {
     super();

@@ -2,6 +2,7 @@ import { ApplicationCommandOptionType, ApplicationCommandType } from 'discord.js
 import { Command } from '../../structures/Command.js';
 import * as chrono from 'chrono-node';
 
+// TODO: autostart events with node-cron and cron.schedule
 export default class EventCommand extends Command {
   constructor(client) {
     super(client, {

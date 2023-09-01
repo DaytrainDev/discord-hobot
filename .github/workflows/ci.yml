@@ -16,4 +16,4 @@ jobs:
         run: npm install --immutable
 
       - name: Run ESLint
-        run: npm lint
+        run: npx eslint src
