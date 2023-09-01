@@ -19,7 +19,7 @@ export default class PingCommand extends Command {
           description: 'A list of FumbleBot commands.',
           fields: [
             {
-              name: `@FumbleBot`,
+              name: '@FumbleBot',
               value: '@ mention FumbleBot and it will reply',
             },
             {
@@ -28,11 +28,11 @@ export default class PingCommand extends Command {
             },
             {
               name: '/write',
-              value: 'Generates an image in response to a prompt',
+              value: 'Writes some text in response to a prompt',
             },
             {
               name: '/imagine',
-              value: 'Writes some text in response to a prompt',
+              value: 'Generates an image in response to a prompt',
             },
           ],
         },
