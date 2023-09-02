@@ -28,7 +28,6 @@ export default class RollCommand extends Command {
     const rollString = interaction.options.getString('roll_string');
     const rollDescription = interaction.options.getString('roll_description');
     const rollResult = diceRoller(rollString);
-    // TODO: speack as character
     const content = `${rollDescription ? `${rollDescription}\n` : ''}\`${rollResult.rollStr}\` => \`${rollResult.rolls}\` => \`${rollResult.total}\``;
 
     return interaction.reply({ content });

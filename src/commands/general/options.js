@@ -1,7 +1,6 @@
 import { ApplicationCommandOptionType, ApplicationCommandType } from 'discord.js';
 import { Command } from '../../structures/Command.js';
-
-const DEFAULT_TOKEN = 'https://www.worldanvil.com/uploads/images/0698a091e4f1360c364f76c24046d69f.png';
+import { DEFAULT_TOKEN } from '../../utils/gameplayHelpers.js';
 
 export const autocompleteOptions = (options, idkey, valkey, value) => {
   const filteredOptionList = value
@@ -14,67 +13,18 @@ export const autocompleteOptions = (options, idkey, valkey, value) => {
   return mappedOptions?.slice?.(0, 24) ?? [];
 };
 
-export const makeCharacterWebhook = async (interaction, database) => {
-  const isThread = interaction?.channel?.isThread();
-  const character = isThread
-    ? await database.getCharacter({ userId: interaction.user?.id, channelId: interaction?.channel.parent.id })
-    : await database.getCharacter({ userId: interaction.user?.id, channelId: interaction?.channel.id });
-  const webhook = await interaction.guild?.channels.createWebhook({
-    name: character?.name,
-    avatar: character?.token?.attachment ?? DEFAULT_TOKEN,
-    channel: interaction?.channelId,
-    reason: 'Character Command',
-  });
-
-  return webhook;
-};
-
 // TODO: autostart events with node-cron and cron.schedule
-export default class CharacterCommand extends Command {
+
+export default class OptionsCommand extends Command {
   constructor(client) {
     super(client, {
-      // Gameplay Commands
-      name: 'character',
-      description: 'Manage your Characters',
+      name: 'options',
+      description: 'Manage your characters and other settings',
       type: ApplicationCommandType.ChatInput,
       options: [
-        {
-          name: 'say',
-          description: 'Say something in character',
-          type: ApplicationCommandOptionType.Subcommand,
-          options: [
-            {
-              type: ApplicationCommandOptionType.String,
-              name: 'quote',
-              description: 'The text your avatar will say',
-              required: true,
-            },
-          ],
-        },
-
-        // {
-        //   name: 'do',
-        //   description: 'Describe what your character does',
-        //   type: ApplicationCommandOptionType.Subcommand,
-        //   options: [
-        //     {
-        //       type: ApplicationCommandOptionType.String,
-        //       name: 'description',
-        //       description: 'A short description of what your character is doing',
-        //       required: true,
-        //     },
-        //   ],
-        // },
-
-        // {
-        //   name: 'move',
-        //   description: 'Move in Character by clicking the D-Pad',
-        //   type: ApplicationCommandOptionType.Subcommand,
-        // },
-
         // Manage Commands
         {
-          name: 'manage',
+          name: 'character',
           description: 'Create, Update, or Remove a Character',
           type: ApplicationCommandOptionType.SubcommandGroup,
           options: [
@@ -158,34 +108,15 @@ export default class CharacterCommand extends Command {
   }
 
   async execute({ interaction }) {
-    const subcommand = interaction.options.getSubcommand();
-
-    // subcommands
-    if (subcommand === 'say') {
-      await this.say({ interaction });
-      return;
-    }
-
     // subcommand groups
     const subcommandGroup = interaction.options.getSubcommandGroup();
 
     if (subcommandGroup === 'manage') {
-      this.manage({ interaction });
+      await this.manage({ interaction });
     }
   }
 
-  async say({ interaction }) {
-    const quote = interaction.options.getString('quote');
-    await interaction.deferReply();
-    const webhook = await makeCharacterWebhook(interaction, this.database);
-    if (!webhook) {
-      return;
-    }
-    await interaction.deleteReply();
-    await webhook.send(`${quote}`);
-    await webhook.delete();
-  }
-
+  // Manage Subcommand Group
   async manage({ interaction }) {
     if (interaction.isAutocomplete()) {
       const focusedOption = interaction.options.getFocused(true);
