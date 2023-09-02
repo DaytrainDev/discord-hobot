@@ -3,6 +3,7 @@ import {
 } from 'discord.js';
 import { EventManager } from './managers/EventManager.js';
 import { CommandManager } from './managers/CommandManager.js';
+import { DatabaseManager } from './managers/DatabaseManager.js';
 import { createWinstonLogger } from './utils/Logger.js';
 
 export class Client extends DiscordClient {
@@ -29,6 +30,7 @@ export class Client extends DiscordClient {
       },
     });
 
+    this.database = new DatabaseManager(this);
     this.commands = new CommandManager(this);
     this.events = new EventManager(this);
   }

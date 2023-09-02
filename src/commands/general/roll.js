@@ -2,7 +2,7 @@ import { diceRoller } from 'dnd5e-dice-roller';
 import { ApplicationCommandType, ApplicationCommandOptionType } from 'discord.js';
 import { Command } from '../../structures/Command.js';
 
-export default class TimestampCommand extends Command {
+export default class RollCommand extends Command {
   constructor(client) {
     super(client, {
       name: 'roll',
