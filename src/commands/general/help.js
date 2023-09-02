@@ -23,8 +23,12 @@ export default class PingCommand extends Command {
               value: '@ mention FumbleBot and it will reply',
             },
             {
-              name: '/timestamp',
-              value: 'Reads a date and returns a timestamp',
+              name: '/play',
+              value: 'Lets you speak, act, and move as your character',
+            },
+            {
+              name: '/options',
+              value: 'Manage your characters and other settings',
             },
             {
               name: '/write',
@@ -33,6 +37,14 @@ export default class PingCommand extends Command {
             {
               name: '/imagine',
               value: 'Generates an image in response to a prompt',
+            },
+            // {
+            //   name: '/roll',
+            //   value: 'A simple dice roller',
+            // },
+            {
+              name: '/timestamp',
+              value: 'Reads a date and returns a timestamp',
             },
           ],
         },
