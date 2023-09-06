@@ -47,25 +47,26 @@ export default class EventCommand extends Command {
   async clone({ interaction }) {
     const guild = interaction?.guild;
     // NOTE: Don't await this fetch. Discord needs an autocomplete response within 3 seconds and this can take longer
+    // can grab from refreshed cache as needed
     guild?.scheduledEvents?.fetch();
     const eventId = interaction.options.getString('source');
     const when = interaction.options.getString('when');
 
     if (interaction.isAutocomplete()) {
-      const eventList = guild?.scheduledEvents?.cache
-        ?.sorted((ev1, ev2) => (
-          (ev2.scheduledStartTimestamp ?? 0) > (ev1.scheduledStartTimestamp ?? 0) ? 1 : -1
-        ));
+      const focusedOption = interaction?.options?.getFocused(true);
 
-      if (!eventList || eventList?.size === 0) {
-        return;
-      }
-
-      const focusedOption = interaction.options.getFocused(true);
-      // TODO: filter by partial name off focusedOption.value
       if (focusedOption?.name === 'source') {
-        const filteredEventList = focusedOption.value
-          ? eventList.filter(ev => ev.name.toLowerCase().includes(focusedOption.value.toLowerCase()))
+        const eventList = guild?.scheduledEvents?.cache
+          ?.sorted((ev1, ev2) => (
+            (ev2?.scheduledStartTimestamp ?? 0) > (ev1?.scheduledStartTimestamp ?? 0) ? 1 : -1
+          ));
+
+        if (!eventList || eventList?.size === 0) {
+          return;
+        }
+
+        const filteredEventList = (focusedOption.value.length > 0)
+          ? eventList.filter(ev => ev?.name?.toLowerCase()?.includes(focusedOption?.value?.toLowerCase()))
           : eventList;
         const mappedOptions = filteredEventList.filter(ev => ev.name && ev.id)
           .map(opt => {
@@ -74,7 +75,7 @@ export default class EventCommand extends Command {
               return ({ name: `${opt?.name}`, value: `${opt?.id}` });
             }
             const date = new Date(ts);
-            const formattedDate = `${date.toLocaleDateString('en-US')} @ ${date.toLocaleTimeString(interaction.locale)}`;
+            const formattedDate = `${date.toLocaleDateString(interaction?.locale)} @ ${date.toLocaleTimeString(interaction?.locale)}`;
             return ({ name: `${opt?.name} (${formattedDate})`, value: `${opt?.id}` });
           });
         const trimmedOptions = mappedOptions.slice(0, 24);
@@ -91,15 +92,6 @@ export default class EventCommand extends Command {
 
     const event = guild?.scheduledEvents?.cache?.find(ev => ev.id === eventId);
 
-    if (!event?.name
-      || !event?.scheduledStartTimestamp
-    ) {
-      interaction.editReply({ content: `Found Incomplete Event\n\`\`\`${JSON.stringify(event, null, 2)}\`\`\`` });
-      return;
-    }
-
-    // interaction.editReply({ content: `Found Event\n\`\`\`${JSON.stringify(event, null, 2)}\`\`\``});
-
     const name = `${event?.name}`;
     let newEvent = {
       name,
@@ -112,12 +104,11 @@ export default class EventCommand extends Command {
       entityMetadata: event?.entityMetadata?.location ? {
         location: event?.entityMetadata?.location,
       } : undefined,
-      // TODO: figure out how to fix image
       image: event?.coverImageURL({ size: 512 }) ?? undefined,
     };
 
     if (when) {
-      const parsedDate = chrono.parseDate(when);
+      const parsedDate = chrono.parseDate(when, { timezone: interaction?.locale });
       if (!parsedDate || !parsedDate.getTime) {
         interaction.editReply({ content: `Could read date -> \`\`\`${JSON.stringify({ when, parsedDate }, null, 2)}\`\`\`` });
         return;
@@ -128,7 +119,6 @@ export default class EventCommand extends Command {
         scheduledStartTime,
       };
     }
-
 
     const createdEvent = await guild?.scheduledEvents?.create(newEvent)
       .catch(err => interaction.editReply({ content: `Error Creating Event\n\`\`\`${JSON.stringify(err, null, 2)}\`\`\`\n\`\`\`${JSON.stringify(newEvent, null, 2)}\`\`\`` }));
