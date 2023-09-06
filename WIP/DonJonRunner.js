@@ -6,13 +6,13 @@
 // //////////////////////////////////////////////////////////////////
 // // Dungeon Helpers
 // function getBits(n: number) {
-// 	return ((Math.abs(n)).toString(2)).split(``).reverse().map(Number).map(Boolean)
+//    return ((Math.abs(n)).toString(2)).split(``).reverse().map(Number).map(Boolean)
 // }
 // function checkBit(n: number, c: number) {
-// 	if (!c) return false;
-// 	const bits = getBits(n)
-// 	const place = getBits(c)?.length - 1
-// 	return bits?.[place] === true;
+//    if (!c) return false;
+//    const bits = getBits(n)
+//    const place = getBits(c)?.length - 1
+//    return bits?.[place] === true;
 // }
 
 // //////////////////////////////////////////////////////////////////
@@ -26,7 +26,7 @@
 //     // egresses and stairs might lead to other dungeons
 //     private dungeonRepo: DungeonRepository;
 
-// 	constructor(data: any, character: any) {
+//    constructor(data: any, character: any) {
 //         this.data = data;
 //         this.character = character;
 //         resolveDependencies([Database]).then(([db]) => {
@@ -70,25 +70,25 @@
 //             }
 //             // checkBit(cellValue, cellBits['trapped']); //
 //             // if (checkBit(cellValue, cellBits['locked'])) { //
-//             // 	return `⚿`;
+//             //   return `⚿`;
 //             // }
 //             return `🚪`;
-//         }	else if (checkBit(cellValue, this.data?.cell_bit['arch'])) { //
+//         }  else if (checkBit(cellValue, this.data?.cell_bit['arch'])) { //
 //             return `🔳`;
-//         }	else if (checkBit(cellValue, this.data?.cell_bit['room_id'])) { //
+//         }  else if (checkBit(cellValue, this.data?.cell_bit['room_id'])) { //
 //             return `🔳`;
-//         }	else if (checkBit(cellValue, this.data?.cell_bit['perimeter'])) { //
+//         }  else if (checkBit(cellValue, this.data?.cell_bit['perimeter'])) { //
 //             return `🟪`;
-//         }	else if (checkBit(cellValue, this.data?.cell_bit['aperture'])) { //
+//         }  else if (checkBit(cellValue, this.data?.cell_bit['aperture'])) { //
 //             return `🟪`;
-//         }	else if (checkBit(cellValue, this.data?.cell_bit['corridor'])) { //
+//         }  else if (checkBit(cellValue, this.data?.cell_bit['corridor'])) { //
 //             return `🔳`;
-//         }	else if (checkBit(cellValue, this.data?.cell_bit['room'])) { //
+//         }  else if (checkBit(cellValue, this.data?.cell_bit['room'])) { //
 //             return `🔳`;
-//         }	else if (checkBit(cellValue, this.data?.cell_bit['block'])) { //
+//         }  else if (checkBit(cellValue, this.data?.cell_bit['block'])) { //
 //             return `🟪`;
 //         }
-    
+
 //         return `🟪`;
 //     }
 
