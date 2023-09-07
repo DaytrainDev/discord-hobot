@@ -178,8 +178,7 @@ export default class OptionsCommand extends Command {
     const oldCharacter = await this.database.getCharacter({
       userId: interaction.user.id,
       guildId: interaction.guild?.id,
-      channelId: interaction.channel?.isThread() ? interaction.channel?.parent.id : interaction.channel?.id,
-      threadId: interaction.channel?.isThread() ? interaction.channel?.parent.id : undefined,
+      channelId: interaction.channel?.isThread() ? interaction.channel?.parent.id : interaction.channel?.id
     });
 
     if (oldCharacter?.id) {
@@ -191,11 +190,10 @@ export default class OptionsCommand extends Command {
     const character = await this.database.setCharacter({
       id,
       channelId: interaction.channel?.isThread() ? interaction.channel?.parent.id : interaction.channel?.id,
-      threadId: interaction.channel?.isThread() ? interaction.channel?.parent.id : undefined,
     });
 
     await interaction.editReply({
-      content: `Character Move to this Channel -> ${JSON.stringify(character, null, 2)}`,
+      content: `Character Moved to this Channel -> ${JSON.stringify(character, null, 2)}`,
     });
   }
 
