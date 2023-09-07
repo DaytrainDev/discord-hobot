@@ -101,8 +101,10 @@ export default class PlayCommand extends Command {
     await interaction.deferReply();
     const webhook = await makeCharacterWebhook(interaction, this.database);
     if (!webhook) {
+      interaction.editReply({ content: 'No character assigned to this channel. Use `/option character select` to select a character.' });
       return;
     }
+
     await webhook.send(`> ${quote}`);
     await webhook.delete();
     await interaction.deleteReply();
@@ -112,7 +114,7 @@ export default class PlayCommand extends Command {
     const rollDescription = interaction.options.getString('description');
     const rollString = interaction.options.getString('roll_string');
 
-    await interaction.deferReply();
+    await interaction.deferReply({ ephemeral: true });
     let rollResult;
     try {
       rollResult = diceRoller(rollString);
@@ -126,10 +128,12 @@ export default class PlayCommand extends Command {
     }`;
 
     const webhook = await makeCharacterWebhook(interaction, this.database);
+
     if (!webhook) {
-      await interaction.editReply({ content });
+      interaction.editReply({ content: 'No character assigned to this channel. Use `/option character select` to select a character.' });
       return;
     }
+
     await webhook.send(`${content}`);
     await webhook.delete();
     await interaction.deleteReply();
@@ -210,6 +214,11 @@ export default class PlayCommand extends Command {
         return;
       }
       const webhook = await makeCharacterWebhook(interaction, this.database);
+      if (!webhook) {
+        interaction.editReply({ content: 'No character assigned to this channel. Use `/option character select` to select a character.' });
+        return;
+      }
+
       content = `\`Movement: ${content}\`\n*${desc}*`;
       if (!webhook) {
         await interaction.editReply({ content, components: [] });

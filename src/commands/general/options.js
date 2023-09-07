@@ -111,13 +111,13 @@ export default class OptionsCommand extends Command {
     // subcommand groups
     const subcommandGroup = interaction.options.getSubcommandGroup();
 
-    if (subcommandGroup === 'manage') {
-      await this.manage({ interaction });
+    if (subcommandGroup === 'character') {
+      await this.character({ interaction });
     }
   }
 
   // Manage Subcommand Group
-  async manage({ interaction }) {
+  async character({ interaction }) {
     if (interaction.isAutocomplete()) {
       const focusedOption = interaction.options.getFocused(true);
       // if field is an autocomplete, retrieve valid options
@@ -163,6 +163,7 @@ export default class OptionsCommand extends Command {
       name,
       token,
     };
+
     const response = await this.database.createCharacter(newCharacter);
 
     await interaction.editReply({
@@ -173,8 +174,21 @@ export default class OptionsCommand extends Command {
   async select({ interaction }) {
     const id = interaction.options.getString('name');
     await interaction.deferReply({ ephemeral: true });
-    let character = await this.database.getCharacter({ id, userId: interaction.user.id, guildId: interaction.guild?.id });
-    character = await this.database.setCharacter({
+
+    const oldCharacter = await this.database.getCharacter({
+      userId: interaction.user.id,
+      guildId: interaction.guild?.id,
+      channelId: interaction.channel?.isThread() ? interaction.channel?.parent.id : interaction.channel?.id,
+      threadId: interaction.channel?.isThread() ? interaction.channel?.parent.id : undefined,
+    });
+
+    if (oldCharacter?.id) {
+      await this.database.setCharacter({
+        id: oldCharacter.id, userId: interaction.user.id, channelId: undefined, threadId: undefined,
+      });
+    }
+
+    const character = await this.database.setCharacter({
       id,
       channelId: interaction.channel?.isThread() ? interaction.channel?.parent.id : interaction.channel?.id,
       threadId: interaction.channel?.isThread() ? interaction.channel?.parent.id : undefined,

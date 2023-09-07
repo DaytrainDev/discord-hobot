@@ -5,12 +5,17 @@ export const makeCharacterWebhook = async (interaction, database) => {
   const character = isThread
     ? await database.getCharacter({ userId: interaction.user?.id, channelId: interaction?.channel.parent.id })
     : await database.getCharacter({ userId: interaction.user?.id, channelId: interaction?.channel.id });
-  const webhook = await interaction.guild?.channels.createWebhook({
-    name: character?.name,
-    avatar: character?.token?.attachment ?? DEFAULT_TOKEN,
-    channel: interaction?.channelId,
-    reason: 'Character Command',
-  });
+  if (character?.id) {
+    const webhook = await interaction.guild?.channels.createWebhook({
+      name: character?.name,
+      avatar: character?.token?.attachment ?? DEFAULT_TOKEN,
+      channel: interaction?.channelId,
+      reason: 'Character Command',
+    });
 
-  return webhook;
+    return webhook;
+  }
+
+  return null;
+
 };
