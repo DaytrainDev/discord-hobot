@@ -108,7 +108,7 @@ export default class EventCommand extends Command {
     };
 
     if (when) {
-      const parsedDate = chrono.parseDate(when, { timezone: interaction?.locale });
+      const parsedDate = chrono.parseDate(when);
       if (!parsedDate || !parsedDate.getTime) {
         interaction.editReply({ content: `Could read date -> \`\`\`${JSON.stringify({ when, parsedDate }, null, 2)}\`\`\`` });
         return;
