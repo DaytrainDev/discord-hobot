@@ -32,7 +32,7 @@ export default class InteractionCreate extends Event {
       // add prompt
       messages.unshift({
         role: 'user',
-        content: `Assume the role of FumbleBot, a chat bot on the TTRPG and Co-op Gaming Community, Crit Fumble Gaming's (CFG), Discord Server. ${'Contribute, comment, or assist as needed.'}`,
+        content: 'Assume the role of FumbleBot, a chat bot in the TTRPG and Co-op Gaming Community, Crit Fumble Gaming\'s (CFG), Discord Server. Contribute, comment, or assist as needed.',
       });
 
       const completionPromise = this.openAi.chat.completions.create({
