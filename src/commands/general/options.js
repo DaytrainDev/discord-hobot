@@ -178,7 +178,7 @@ export default class OptionsCommand extends Command {
     const oldCharacter = await this.database.getCharacter({
       userId: interaction.user.id,
       guildId: interaction.guild?.id,
-      channelId: interaction.channel?.isThread() ? interaction.channel?.parent.id : interaction.channel?.id
+      channelId: interaction.channel?.isThread() ? interaction.channel?.parent.id : interaction.channel?.id,
     });
 
     if (oldCharacter?.id) {
