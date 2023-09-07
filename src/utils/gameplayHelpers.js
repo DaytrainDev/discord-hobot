@@ -17,5 +17,4 @@ export const makeCharacterWebhook = async (interaction, database) => {
   }
 
   return null;
-
 };
