@@ -1,15 +1,15 @@
 import { Event } from '../structures/Event.js';
-import { ChatCompletionRequestMessageRoleEnum, Configuration, OpenAIApi } from 'openai';
+import OpenAIApi from 'openai';
 import { getChannelMessages } from '../utils/openAiHelpers.js';
 
 export default class InteractionCreate extends Event {
   constructor() {
     super();
     this.eventName = 'messageCreate';
-    this.openAi = new OpenAIApi(new Configuration({
+    this.openAi = new OpenAIApi({
       organization: process.env.OPENAI_ORG_ID,
       apiKey: process.env.OPENAI_API_KEY,
-    }));
+    });
     this.activeChannels = new Map();
   }
 
@@ -31,15 +31,15 @@ export default class InteractionCreate extends Event {
 
       // add prompt
       messages.unshift({
-        role: ChatCompletionRequestMessageRoleEnum.User,
+        role: 'user',
         content: `Assume the role of FumbleBot, a chat bot on the TTRPG and Co-op Gaming Community, Crit Fumble Gaming's (CFG), Discord Server. ${'Contribute, comment, or assist as needed.'}`,
       });
 
-      const completionPromise = this.openAi.createChatCompletion({
+      const completionPromise = this.openAi.chat.completions.create({
         messages,
         model: 'gpt-3.5-turbo',
-        max_tokens: 500,
-      }).then(rawResponse => rawResponse?.data?.choices?.[0]?.message?.content);
+        max_tokens: 250,
+      }).then(rawResponse => rawResponse?.choices?.[0]?.message?.content);
       this.activeChannels.set(channel?.id, completionPromise);
       const completion = await completionPromise;
 

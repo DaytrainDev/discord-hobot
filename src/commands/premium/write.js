@@ -1,6 +1,6 @@
 import { ApplicationCommandType, ApplicationCommandOptionType } from 'discord.js';
 import { Command } from '../../structures/Command.js';
-import { ChatCompletionRequestMessageRoleEnum, Configuration, OpenAIApi } from 'openai';
+import OpenAIApi from 'openai';
 
 export default class WriteCommand extends Command {
   constructor(client) {
@@ -22,15 +22,15 @@ export default class WriteCommand extends Command {
     const prompt = interaction.options.getString('prompt');
     await interaction.deferReply();
 
-    const openAi = new OpenAIApi(new Configuration({
+    const openAi = new OpenAIApi({
       organization: process.env.OPENAI_ORG_ID,
       apiKey: process.env.OPENAI_API_KEY,
-    }));
+    });
 
-    const rawResponse = await openAi.createChatCompletion({
+    const rawResponse = await openAi.chat.completions.create({
       // TODO: check prompt for token count, return error if too large
       messages: [{
-        role: ChatCompletionRequestMessageRoleEnum.User,
+        role: 'user',
         content: prompt,
       }],
       model: 'gpt-3.5-turbo',
@@ -40,7 +40,8 @@ export default class WriteCommand extends Command {
 
     // TODO: limit character count to 2000 for discord messages, chuck response into multiple messages, embeds, or a thread.
     // TODO: increase token limit in request once above is complete
-    const response = rawResponse?.data?.choices?.[0]?.message?.content;
+    console.log(rawResponse);
+    const response = rawResponse?.choices?.[0]?.message?.content;
 
     return interaction.followUp({
       content: response,

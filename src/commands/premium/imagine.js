@@ -1,6 +1,6 @@
 import { ApplicationCommandType, ApplicationCommandOptionType } from 'discord.js';
 import { Command } from '../../structures/Command.js';
-import { Configuration, OpenAIApi } from 'openai';
+import OpenAIApi from 'openai';
 
 export default class ImagineCommand extends Command {
   constructor(client) {
@@ -42,21 +42,23 @@ export default class ImagineCommand extends Command {
     const size = interaction.options.getString('size') ?? '256x256';
 
     await interaction.deferReply();
-    const openAi = new OpenAIApi(new Configuration({
+    const openAi = new OpenAIApi({
       organization: process.env.OPENAI_ORG_ID,
       apiKey: process.env.OPENAI_API_KEY,
-    }));
+    });
 
-    const rawResponse = await openAi.createImage({
+    const rawResponse = await openAi.images.generate({
       prompt,
       size,
       n: 1,
       response_format: 'url',
       user: interaction?.user?.id,
     });
-    const response = rawResponse?.data?.data?.[0];
+
+    const response = rawResponse?.data?.[0];
 
     if (!response?.url) {
+      interaction.followUp({ content: 'Something went wrong, ping an admin for assistance' });
       return;
     }
 

@@ -1,5 +1,4 @@
 import { encode } from 'gpt-3-encoder';
-import { ChatCompletionRequestMessageRoleEnum } from 'openai';
 
 export function countTokens(messages) {
   return messages.flatMap(mes => {
@@ -31,12 +30,12 @@ export function formatMessages(messages) {
   return newMessages?.filter((mes) => mes?.content)?.map((mes) => {
     if (mes?.author?.id === process.env.BOT_APP_ID) {
       return {
-        role: ChatCompletionRequestMessageRoleEnum.Assistant,
+        role: 'assistant',
         content: `${mes?.content}`,
       };
     }
     return {
-      role: ChatCompletionRequestMessageRoleEnum.User,
+      role: 'user',
       content: `${mes?.content}`,
     };
   }) ?? [];
