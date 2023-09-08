@@ -1,4 +1,6 @@
-import { ApplicationCommandOptionType, ApplicationCommandType, AttachmentBuilder, ComponentType } from 'discord.js';
+import {
+  ApplicationCommandOptionType, ApplicationCommandType, AttachmentBuilder, ComponentType,
+} from 'discord.js';
 import { Command } from '../../structures/Command.js';
 import Canvas from '@napi-rs/canvas';
 
