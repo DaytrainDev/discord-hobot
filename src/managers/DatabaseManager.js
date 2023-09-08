@@ -2,8 +2,8 @@ import { MongoClient } from 'mongodb';
 import crypto from 'crypto';
 
 export class DatabaseManager {
-  constructor(context) {
-    this.client = context.client;
+  constructor(client) {
+    this.client = client;
     this.mongo = new MongoClient(process.env.MONGO_DB_URL);
     this.init();
   }
@@ -15,8 +15,7 @@ export class DatabaseManager {
     } catch (e) {
       console.error(e);
     } finally {
-      // await this.mongo.close();
-      console.info('DatabaseManager init complete');
+      this.client.logger.info('DatabaseManager init complete', { tags: ['Database'] });
     }
   }
 

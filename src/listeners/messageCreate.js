@@ -2,7 +2,7 @@ import { Event } from '../structures/Event.js';
 import OpenAIApi from 'openai';
 import { getChannelMessages } from '../utils/openAiHelpers.js';
 
-export default class InteractionCreate extends Event {
+export default class MessageCreate extends Event {
   constructor() {
     super();
     this.eventName = 'messageCreate';
@@ -63,7 +63,5 @@ export default class InteractionCreate extends Event {
     if (interaction.content.includes(`${process.env.BOT_APP_ID}`)) {
       await this.botResponse({ interaction });
     }
-
-    return null;
   }
 }

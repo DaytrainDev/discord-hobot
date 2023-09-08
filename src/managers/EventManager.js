@@ -11,6 +11,7 @@ export class EventManager {
       const { default: EventClass } = await import(`../listeners/${event}`);
       const evt = new EventClass();
       await this.client.on(evt.eventName, (...args) => evt.execute(this.client, ...args));
+      this.client.logger.info(`Loaded event ${evt.eventName}`);
     }
 
     this.client.logger.info(`Loaded ${events.length} events successfully!`, { tags: ['Events'] });
