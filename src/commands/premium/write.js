@@ -40,7 +40,6 @@ export default class WriteCommand extends Command {
 
     // TODO: limit character count to 2000 for discord messages, chuck response into multiple messages, embeds, or a thread.
     // TODO: increase token limit in request once above is complete
-    console.log(rawResponse);
     const response = rawResponse?.choices?.[0]?.message?.content;
 
     return interaction.followUp({
