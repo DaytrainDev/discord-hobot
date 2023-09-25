@@ -1,7 +1,7 @@
 // import { Category } from "@discordx/utilities"
 // import { ApplicationCommandOptionType, AutocompleteInteraction, CommandInteraction } from "discord.js"
 // import { Discord, Guard, Slash, SlashGroup, SlashOption } from "@decorators"
-// import { Database, FumbleBot } from "@services"
+// import { Database, Hobot } from "@services"
 // import { resolveDependencies } from "@utils/functions"
 // import { CompendiumEntry, CompendiumEntryRepository, CompendiumSection, CompendiumSectionRepository,} from "@entities"
 // import { UserPermissions } from "@guards"
@@ -20,12 +20,12 @@
 // export default class Dnd5eCommand {
 // 	private readonly _categories: Map<string, CommandCategory[]> = new Map()
 //     private db: Database
-//     private fb: FumbleBot
+//     private fb: Hobot
 //     private compendiumSectionRepo: CompendiumSectionRepository
 //     private compendiumEntryRepo: CompendiumEntryRepository
 
 // 	constructor() {
-//         resolveDependencies([Database, FumbleBot])
+//         resolveDependencies([Database, Hobot])
 //             .then(([db, fb]) => {
 //                 this.db = db;
 //                 this.fb = fb;

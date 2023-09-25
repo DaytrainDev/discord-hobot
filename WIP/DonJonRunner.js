@@ -16,7 +16,7 @@
 // }
 
 // //////////////////////////////////////////////////////////////////
-// // FumbleBot Class
+// // Hobot Class
 // @singleton()
 // export class DonjonRunner {
 //     private activeChannels: Map<string, Promise<any> | null> = new Map();

@@ -1,3 +1,4 @@
+/* eslint-disable no-tabs */
 // import { Category } from "@discordx/utilities"
 // import { ChannelType, CommandInteraction } from "discord.js"
 // import { Guard, UserPermissions } from "@guards"
@@ -21,8 +22,8 @@
 //     UserPermissions(['Administrator'])
 // )
 // @SlashGroup({
-// 	name: 'update',
-// 	description: 'Commands to resync data',
+//   name: 'update',
+//   description: 'Commands to resync data',
 // })
 // @SlashGroup({
 //   description: "Import DND5e sources.",
@@ -31,7 +32,7 @@
 // })
 
 // export default class UpdateCommand {
-// 	@Slash({ 
+// 	@Slash({
 // 		name: 'srd',
 // 		description: 'Update the SRD for DND5e' // or Cypher.'
 //     })
@@ -93,7 +94,7 @@
 //             }
 //             const url = compendium[index];
 //             let updatedCompendiumSection = await compendiumSectionRepository.findOne({
-//                 index, 
+//                 index,
 //                 ...defaultQuery,
 //             }).catch((error: Error) => {
 //                 // it's fine, everything's fine... c o n s u m e
@@ -104,14 +105,14 @@
 //             } as any;
 
 //             try {
-//                 updatedCompendiumSection = updatedCompendiumSection?.compendiumSectionId 
+//                 updatedCompendiumSection = updatedCompendiumSection?.compendiumSectionId
 //                 ? await compendiumSectionRepository.upsert({
 //                     index,
 //                     url,
 //                     ...defaultQuery,
 //                     ...metaData,
 //                     ...updatedCompendiumSection,
-//                 }) 
+//                 })
 //                 : await compendiumSectionRepository.create({
 //                     compendiumSectionId: uuidv4(),
 //                     index,
@@ -141,7 +142,7 @@
 //                     continue;
 //                 }
 //                 let updatedCompendiumEntry = await compendiumEntryRepository.findOne({
-//                     index: entry?.index, 
+//                     index: entry?.index,
 //                     section: index,
 //                     ...defaultQuery,
 //                 }).catch((error: Error) => {
@@ -157,11 +158,11 @@
 //                         updatedCompendiumEntry.section = index;
 //                         message?.edit(`Updating DND5e SRD Entry "${updatedCompendiumEntry?.name}".\n\`${updatedCompendiumEntry.url}\``)
 //                         try {
-//                             updatedCompendiumEntry = updatedCompendiumEntry?.compendiumEntryId 
+//                             updatedCompendiumEntry = updatedCompendiumEntry?.compendiumEntryId
 //                                 ? await compendiumEntryRepository.upsert({
 //                                     compendiumEntryId: updatedCompendiumEntry?.compendiumEntryId,
 //                                     ...updatedCompendiumEntry,
-//                                 }) 
+//                                 })
 //                                 : await compendiumEntryRepository.create({
 //                                     compendiumEntryId: uuidv4(),
 //                                     createdAt: Date.now(),

@@ -121,7 +121,10 @@ export default class EventCommand extends Command {
     }
 
     const createdEvent = await guild?.scheduledEvents?.create(newEvent)
-      .catch(err => interaction.editReply({ content: `Error Creating Event\n\`\`\`${JSON.stringify(err, null, 2)}\`\`\`\n\`\`\`${JSON.stringify(newEvent, null, 2)}\`\`\`` }));
+      .catch(err => {
+        console.error(err);
+        interaction.editReply({ content: 'Error Creating Event. Try entering a different date.' });
+      });
 
     if (!createdEvent?.id) {
       return;

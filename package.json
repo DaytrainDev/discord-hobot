@@ -1,18 +1,18 @@
 {
-  "name": "fumblebot",
-  "description": "A Discord bot for TTRPG Gaming based on the boilerplate by Nicolas Ribeiro",
+  "name": "hobot",
+  "description": "A Discord bot I use for server admin based on the boilerplate by Nicolas Ribeiro",
   "version": "0.0.1",
   "private": false,
   "main": "./src/Launcher.js",
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Crit-Fumble/FumbleBot.git"
+    "url": "https://github.com/the0bob/Hobot.git"
   },
   "bugs": {
-    "url": "https://github.com/Crit-Fumble/FumbleBot/issues"
+    "url": "https://github.com/the0bob/Hobot/issues"
   },
-  "homepage": "https://github.com/Crit-Fumble/FumbleBot#readme",
+  "homepage": "https://github.com/the0bob/Hobot#readme",
   "scripts": {
     "do:build": "npm install --production=false && npm run build && npm ci",
     "build": "npm run build:clean && npm run build:compile",
@@ -31,7 +31,7 @@
   "engines": {
     "node": "16.20.2"
   },
-  "author": "Crit Fumble Gaming <crit.fumble.web@gmail.com>",
+  "author": "Bob Palmer <https://bobpalmer.info>",
   "dependencies": {
     "@babel/register": "^7.22.5",
     "@discordjs/opus": "^0.9.0",
@@ -52,10 +52,7 @@
     "winston": "3.8.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.22.10",
-    "@babel/core": "^7.22.15",
-    "@babel/node": "^7.22.15",
-    "@babel/preset-env": "^7.22.14",
+    "babel-cli": "^6.26.0",
     "eslint": "8.48.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-plugin-import": "2.25.2"

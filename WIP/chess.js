@@ -1,7 +1,7 @@
 // import { Category } from "@discordx/utilities"
 // import { APIEmbed, ApplicationCommandOptionType, AutocompleteInteraction, ButtonInteraction, CommandInteraction, ComponentType, JSONEncodable, StringSelectMenuInteraction } from "discord.js"
 // import { Discord, Slash, SlashChoice, SlashGroup, SlashOption } from "@decorators"
-// import { ChessRunner, Database, DonjonRunner, FumbleBot } from "@services"
+// import { ChessRunner, Database, DonjonRunner, Hobot } from "@services"
 // import { resolveDependencies } from "@utils/functions"
 // import { Campaign, CampaignRepository, CampaignSetting, CampaignSettingRepository, Character, CharacterRepository, Party, PartyRepository } from "@entities"
 // import { Client } from "discordx"
@@ -30,14 +30,14 @@
 // export default class GameCommand {
 // 	private readonly _categories: Map<string, CommandCategory[]> = new Map()
 //     private db: Database
-//     private fb: FumbleBot
+//     private fb: Hobot
 //     private characterRepo: CharacterRepository
 //     private partyRepo: PartyRepository
 //     private campaignRepo: CampaignRepository
 //     private campaignSettingRepo: CampaignSettingRepository
 
 // 	constructor() {
-//         resolveDependencies([Database, FumbleBot]).then(([db, fb]) => {
+//         resolveDependencies([Database, Hobot]).then(([db, fb]) => {
 //             this.db = db
 //             this.fb = fb
 // 			this.characterRepo = this.db.get(Character)

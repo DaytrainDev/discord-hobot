@@ -30,9 +30,10 @@ export default class MessageCreate extends Event {
       }
 
       // add prompt
+      // TODO: read server description into prompt
       messages.unshift({
         role: 'user',
-        content: 'Assume the role of FumbleBot, a chat bot in the TTRPG and Co-op Gaming Community, Crit Fumble Gaming\'s (CFG), Discord Server. Contribute, comment, or assist as needed.',
+        content: `Assume the role of ${process.env.BOT_NAME}, a chat bot on a Discord Server. Offer answers with brief examples and suggestions when possible.`,
       });
 
       const completionPromise = this.openAi.chat.completions.create({
