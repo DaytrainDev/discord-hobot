@@ -42,6 +42,7 @@
     "discord.js": "14.13.0",
     "dnd5e-dice-roller": "^0.0.13",
     "dotenv": "16.3.1",
+    "fantasy-content-generator": "^4.9.1",
     "ffmpeg-static": "^5.2.0",
     "gpt-3-encoder": "^1.1.4",
     "libsodium-wrappers": "^0.7.11",
@@ -52,7 +53,10 @@
     "winston": "3.8.1"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
+    "@babel/cli": "^7.22.10",
+    "@babel/core": "^7.22.15",
+    "@babel/node": "^7.22.15",
+    "@babel/preset-env": "^7.22.14",
     "eslint": "8.48.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-plugin-import": "2.25.2"
