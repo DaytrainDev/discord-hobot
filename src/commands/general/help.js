@@ -16,11 +16,11 @@ export default class PingCommand extends Command {
         {
           color: 0x7289da,
           title: 'Commands',
-          description: 'A list of Hobot commands.',
+          description: `A list of ${process.env.BOT_NAME} commands.`,
           fields: [
             {
-              name: '@Hobot',
-              value: '@ mention Hobot and it will reply',
+              name: `@${process.env.BOT_NAME}`,
+              value: `@ mention ${process.env.BOT_NAME} and it will reply`,
             },
             // {
             //   name: '/play',
