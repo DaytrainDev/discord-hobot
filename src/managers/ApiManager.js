@@ -1,6 +1,6 @@
 import http from 'node:http';
 
-export class Api {
+export class ApiManager {
   constructor(client) {
     this.client = client;
   }

@@ -6,6 +6,7 @@ import { CommandManager } from './managers/CommandManager.js';
 import { DatabaseManager } from './managers/DatabaseManager.js';
 import { CronJobManager } from './managers/CronJobManager.js';
 import { createWinstonLogger } from './utils/Logger.js';
+import { ApiManager } from './managers/ApiManager.js';
 
 export class Client extends DiscordClient {
   constructor() {
@@ -36,6 +37,7 @@ export class Client extends DiscordClient {
     this.commands = new CommandManager(this);
     this.events = new EventManager(this);
     this.cronJobs = new CronJobManager(this);
+    this.api = new ApiManager(this).start();
   }
 
   async start() {
