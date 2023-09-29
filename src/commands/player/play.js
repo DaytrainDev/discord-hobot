@@ -122,10 +122,9 @@ export default class PlayCommand extends Command {
       rollResult = new DiceRoll(rollString);
     } catch (err) {
       await interaction.editReply({ content: `\`${rollString}\` is not a valid roll_string, or something else went wrong. Please try again.` });
-      return;
     }
 
-    const content = `*${rollDescription}*${rollResult?.rollStr
+    const content = `*${rollDescription}*${rollResult
       ? `\n\`${rollResult.output}\``
       : ''
     }`;
@@ -133,7 +132,7 @@ export default class PlayCommand extends Command {
     const webhook = await makeCharacterWebhook(interaction, this.database);
 
     if (!webhook) {
-      interaction.editReply({ content: 'No character assigned to this channel. Use `/option character select` to select a character.' });
+      interaction.editReply({ content: 'No character assigned to this channel. Use `/character select` to select a character.' });
 
       return;
     }
