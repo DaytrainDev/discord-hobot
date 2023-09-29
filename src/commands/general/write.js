@@ -35,7 +35,7 @@ export default class WriteCommand extends Command {
       }],
       model: 'gpt-3.5-turbo',
       user: interaction?.user?.id,
-      max_tokens: 250,
+      max_tokens: 400,
     });
 
     // TODO: limit character count to 2000 for discord messages, chuck response into multiple messages, embeds, or a thread.
@@ -45,7 +45,8 @@ export default class WriteCommand extends Command {
     return interaction.followUp({
       content: response,
       embeds: [{
-        title: `> ${prompt}`,
+        title: 'Prompt',
+        description: `> ${prompt}`,
       }],
     });
   }

@@ -37,27 +37,16 @@ export default class PingCommand extends Command {
           description: `A list of ${process.env.BOT_NAME} commands.`,
           fields: [
             {
+              name: '/character',
+              value: 'Select and manage your characters.',
+            },
+            {
               name: '/play',
               value: 'Lets you speak, act, and move as your character',
             },
             {
-              name: '/character',
-              value: 'Select and manage your characters',
-            },
-            {
               name: '/roll',
               value: 'A simple dice roller',
-            },
-          ],
-        },
-        {
-          color: 0x7289da,
-          title: 'Dev Commands',
-          description: `A list of ${process.env.BOT_NAME} commands.`,
-          fields: [
-            {
-              name: '/timestamp',
-              value: 'Reads a date and returns a timestamp',
             },
           ],
         },
