@@ -15,21 +15,13 @@ export default class PingCommand extends Command {
       embeds: [
         {
           color: 0x7289da,
-          title: 'Commands',
+          title: 'General Commands',
           description: `A list of ${process.env.BOT_NAME} commands.`,
           fields: [
             {
               name: `@${process.env.BOT_NAME}`,
               value: `@ mention ${process.env.BOT_NAME} and it will reply`,
             },
-            // {
-            //   name: '/play',
-            //   value: 'Lets you speak, act, and move as your character',
-            // },
-            // {
-            //   name: '/options',
-            //   value: 'Manage your characters and other settings',
-            // },
             {
               name: '/write',
               value: 'Writes some text in response to a prompt',
@@ -47,7 +39,36 @@ export default class PingCommand extends Command {
             //   value: 'Reads a date and returns a timestamp',
             // },
           ],
+        },{
+          color: 0x7289da,
+          title: 'Player Commands',
+          description: `A list of ${process.env.BOT_NAME} commands.`,
+          fields: [
+            {
+              name: '/play',
+              value: 'Lets you speak, act, and move as your character',
+            },
+            {
+              name: '/character',
+              value: 'Select and manage your characters',
+            },
+            {
+              name: '/roll',
+              value: 'A simple dice roller',
+            },
+          ],
         },
+        {
+          color: 0x7289da,
+          title: 'Dev Commands',
+          description: `A list of ${process.env.BOT_NAME} commands.`,
+          fields: [
+            {
+              name: '/timestamp',
+              value: 'Reads a date and returns a timestamp',
+            },
+          ],
+        }, 
       ],
       ephemeral: true,
     });
