@@ -30,16 +30,8 @@ export default class PingCommand extends Command {
               name: '/imagine',
               value: 'Generates an image in response to a prompt',
             },
-            // {
-            //   name: '/roll',
-            //   value: 'A simple dice roller',
-            // },
-            // {
-            //   name: '/timestamp',
-            //   value: 'Reads a date and returns a timestamp',
-            // },
           ],
-        },{
+        }, {
           color: 0x7289da,
           title: 'Player Commands',
           description: `A list of ${process.env.BOT_NAME} commands.`,
@@ -68,7 +60,7 @@ export default class PingCommand extends Command {
               value: 'Reads a date and returns a timestamp',
             },
           ],
-        }, 
+        },
       ],
       ephemeral: true,
     });

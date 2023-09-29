@@ -51,7 +51,7 @@ export default class PlayCommand extends Command {
             {
               type: ApplicationCommandOptionType.String,
               name: 'roll_string',
-              description: 'Ex:`1d12+5`, `2d20kl1 + 1d4 + 4`',
+              description: 'Ex:`1d12+5`, `2d20dl1 + 1d4 + 4`, `2d20dh1 - 2`',
             },
           ],
         },
@@ -121,7 +121,7 @@ export default class PlayCommand extends Command {
     } catch (e) {
       // consume, we'll just send the description
     }
-
+  
     const content = `*${rollDescription}*${rollResult?.rollStr
       ? `\n\`${rollResult.rollStr}\` => \`${rollResult.rolls}\` => \`${rollResult.total}\``
       : ''
