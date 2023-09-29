@@ -1,7 +1,7 @@
 import { ApplicationCommandOptionType, ApplicationCommandType, ComponentType } from 'discord.js';
 import { Command } from '../../structures/Command.js';
 import { makeCharacterWebhook } from '../../utils/gameplayHelpers.js';
-import { diceRoller } from 'dnd5e-dice-roller';
+import { DiceRoll } from '@dice-roller/rpg-dice-roller';
 
 export const autocompleteOptions = (options, idkey, valkey, value) => {
   const filteredOptionList = value
@@ -51,14 +51,14 @@ export default class PlayCommand extends Command {
             {
               type: ApplicationCommandOptionType.String,
               name: 'roll_string',
-              description: 'Ex:`1d12+5`, `2d20dl1 + 1d4 + 4`, `2d20dh1 - 2`',
+              description: 'Ex:`1d12+5`, `2d20kl1 + 1d4 + 4`, `2d20dk1 - 2`',
             },
           ],
         },
 
         {
           name: 'move',
-          description: 'Move in Character by clicking the D-Pad',
+          description: 'Declare movement by clicking the D-Pad',
           type: ApplicationCommandOptionType.Subcommand,
           options: [
             {
@@ -102,6 +102,7 @@ export default class PlayCommand extends Command {
     const webhook = await makeCharacterWebhook(interaction, this.database);
     if (!webhook) {
       interaction.editReply({ content: 'No character assigned to this channel. Use `/option character select` to select a character.' });
+
       return;
     }
 
@@ -116,14 +117,16 @@ export default class PlayCommand extends Command {
 
     await interaction.deferReply({ ephemeral: true });
     let rollResult;
+
     try {
-      rollResult = diceRoller(rollString);
-    } catch (e) {
-      // consume, we'll just send the description
+      rollResult = new DiceRoll(rollString);
+    } catch (err) {
+      await interaction.editReply({ content: `\`${rollString}\` is not a valid roll_string, or something else went wrong. Please try again.` });
+      return;
     }
-  
+
     const content = `*${rollDescription}*${rollResult?.rollStr
-      ? `\n\`${rollResult.rollStr}\` => \`${rollResult.rolls}\` => \`${rollResult.total}\``
+      ? `\n\`${rollResult.output}\``
       : ''
     }`;
 
@@ -131,6 +134,7 @@ export default class PlayCommand extends Command {
 
     if (!webhook) {
       interaction.editReply({ content: 'No character assigned to this channel. Use `/option character select` to select a character.' });
+
       return;
     }
 
