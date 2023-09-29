@@ -7,12 +7,12 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "https://github.com/the0bob/Hobot.git"
+    "url": "https://github.com/Playitec-Games/Hobot.git"
   },
   "bugs": {
-    "url": "https://github.com/the0bob/Hobot/issues"
+    "url": "https://github.com/Playitec-Games/Hobot/issues"
   },
-  "homepage": "https://github.com/the0bob/Hobot#readme",
+  "homepage": "https://github.com/Playitec-Games/Hobot#readme",
   "scripts": {
     "do:build": "npm install --production=false && npm run build && npm ci",
     "build": "npm run build:clean && npm run build:compile",
@@ -31,7 +31,7 @@
   "engines": {
     "node": "16.20.2"
   },
-  "author": "Bob Palmer <https://bobpalmer.info>",
+  "author": "Daytrain",
   "dependencies": {
     "@babel/register": "^7.22.5",
     "@discordjs/opus": "^0.9.0",
