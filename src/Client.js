@@ -18,6 +18,7 @@ export class Client extends DiscordClient {
         GatewayIntentBits.GuildScheduledEvents,
         GatewayIntentBits.GuildVoiceStates,
         GatewayIntentBits.MessageContent,
+        GatewayIntentBits.GuildVoiceStates,
       ],
       partials: [Partials.Channel, Partials.User, Partials.GuildMember, Partials.Message, Partials.GuildScheduledEvent],
       failIfNotExists: false,

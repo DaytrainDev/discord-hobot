@@ -13,6 +13,7 @@ export default class ImagineCommand extends Command {
           type: ApplicationCommandOptionType.String,
           name: 'prompt',
           description: 'The prompt to respond to',
+          required: true,
         },
         {
           name: 'size',
