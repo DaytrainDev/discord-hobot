@@ -11,7 +11,7 @@ export default class AudioCommand extends Command {
       options: [
         {
           name: 'play',
-          description: 'Upload an ausio file to play',
+          description: 'Upload an audio file to play',
           type: ApplicationCommandOptionType.Subcommand,
           options: [
             {
