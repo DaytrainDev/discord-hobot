@@ -41,9 +41,13 @@ export default class PingCommand extends Command {
               value: 'Select and manage your characters.',
             },
             {
-              name: '/play',
-              value: 'Lets you speak, act, and move as your character',
+              name: '/ic',
+              value: 'Lets you speak, act, and move as in character',
             },
+            // {
+            //   name: '/ooc',
+            //   value: 'Lets you ... out of character',
+            // },
             {
               name: '/roll',
               value: 'A simple dice roller',

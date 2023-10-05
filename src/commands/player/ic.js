@@ -16,11 +16,11 @@ export const autocompleteOptions = (options, idkey, valkey, value) => {
 
 // TODO: autostart events with node-cron and cron.schedule
 
-export default class PlayCommand extends Command {
+export default class IcCommand extends Command {
   constructor(client) {
     super(client, {
       // Gameplay Commands
-      name: 'play',
+      name: 'ic',
       description: 'Speak, act or move as your character',
       type: ApplicationCommandType.ChatInput,
       options: [

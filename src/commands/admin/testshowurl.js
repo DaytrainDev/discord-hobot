@@ -4,10 +4,10 @@ import {
 import { Command } from '../../structures/Command.js';
 import puppeteer from 'puppeteer';
 
-export default class ShowCommand extends Command {
+export default class ShowUrlCommand extends Command {
   constructor(client) {
     super(client, {
-      name: 'show',
+      name: 'showurl',
       description: 'Play video in the current voice channel.',
       type: ApplicationCommandType.ChatInput,
       options: [
