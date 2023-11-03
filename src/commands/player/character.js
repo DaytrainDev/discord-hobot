@@ -15,89 +15,81 @@ export const autocompleteOptions = (options, idkey, valkey, value) => {
 
 // TODO: autostart events with node-cron and cron.schedule
 
-export default class OptionsCommand extends Command {
+export default class CharacterCommand extends Command {
   constructor(client) {
     super(client, {
-      name: 'options',
+      name: 'character',
       description: 'Manage your characters and other settings',
       type: ApplicationCommandType.ChatInput,
       options: [
-        // Manage Commands
         {
-          name: 'character',
-          description: 'Create, Update, or Remove a Character',
-          type: ApplicationCommandOptionType.SubcommandGroup,
+          name: 'select',
+          description: 'Select an active character for this channel',
+          type: ApplicationCommandOptionType.Subcommand,
           options: [
             {
-              name: 'select',
-              description: 'Select an active character for this channel',
-              type: ApplicationCommandOptionType.Subcommand,
-              options: [
-                {
-                  type: ApplicationCommandOptionType.String,
-                  name: 'name',
-                  description: 'Choose a character',
-                  required: true,
-                  autocomplete: true,
-                },
-              ],
+              type: ApplicationCommandOptionType.String,
+              name: 'name',
+              description: 'Choose a character',
+              required: true,
+              autocomplete: true,
+            },
+          ],
+        },
+        {
+          name: 'create',
+          description: 'Create a new character',
+          type: ApplicationCommandOptionType.Subcommand,
+          options: [
+            {
+              type: ApplicationCommandOptionType.String,
+              name: 'name',
+              description: 'Your character\'s name',
+              required: true,
             },
             {
-              name: 'create',
-              description: 'Create a new character',
-              type: ApplicationCommandOptionType.Subcommand,
-              options: [
-                {
-                  type: ApplicationCommandOptionType.String,
-                  name: 'name',
-                  description: 'Your character\'s name',
-                  required: true,
-                },
-                {
-                  type: ApplicationCommandOptionType.Attachment,
-                  name: 'token',
-                  description: 'Upload a token for your character',
-                },
-              ],
+              type: ApplicationCommandOptionType.Attachment,
+              name: 'token',
+              description: 'Upload a token for your character',
+            },
+          ],
+        },
+        {
+          name: 'edit',
+          description: 'Edit an existing character',
+          type: ApplicationCommandOptionType.Subcommand,
+          options: [
+            {
+              type: ApplicationCommandOptionType.String,
+              name: 'name',
+              description: 'Character\'s Current Name',
+              required: true,
+              autocomplete: true,
             },
             {
-              name: 'edit',
-              description: 'Edit an existing character',
-              type: ApplicationCommandOptionType.Subcommand,
-              options: [
-                {
-                  type: ApplicationCommandOptionType.String,
-                  name: 'name',
-                  description: 'Character\'s Current Name',
-                  required: true,
-                  autocomplete: true,
-                },
-                {
-                  type: ApplicationCommandOptionType.String,
-                  name: 'new_name',
-                  description: 'Character\'s New Name',
-                },
-                {
-                  type: ApplicationCommandOptionType.Attachment,
-                  name: 'token',
-                  description: 'Upload a token for your character',
-                  required: false,
-                },
-              ],
+              type: ApplicationCommandOptionType.String,
+              name: 'new_name',
+              description: 'Character\'s New Name',
             },
             {
-              name: 'remove',
-              description: 'Remove a character',
-              type: ApplicationCommandOptionType.Subcommand,
-              options: [
-                {
-                  type: ApplicationCommandOptionType.String,
-                  name: 'name',
-                  description: 'The event to copy',
-                  required: true,
-                  autocomplete: true,
-                },
-              ],
+              type: ApplicationCommandOptionType.Attachment,
+              name: 'token',
+              description: 'Upload a token for your character',
+              required: false,
+            },
+          ],
+        },
+        {
+          name: 'remove',
+          description: 'Remove a character',
+          type: ApplicationCommandOptionType.Subcommand,
+          options: [
+            {
+              type: ApplicationCommandOptionType.String,
+              name: 'name',
+              description: 'The event to copy',
+              required: true,
+              autocomplete: true,
             },
           ],
         },
@@ -107,17 +99,17 @@ export default class OptionsCommand extends Command {
     this.database = client.database;
   }
 
-  async execute({ interaction }) {
-    // subcommand groups
-    const subcommandGroup = interaction.options.getSubcommandGroup();
+  // async execute({ interaction }) {
+  //   // subcommand groups
+  //   const subcommandGroup = interaction.options.getSubcommandGroup();
 
-    if (subcommandGroup === 'character') {
-      await this.character({ interaction });
-    }
-  }
+  //   if (subcommandGroup === 'character') {
+  //     await this.character({ interaction });
+  //   }
+  // }
 
   // Manage Subcommand Group
-  async character({ interaction }) {
+  async execute({ interaction }) {
     if (interaction.isAutocomplete()) {
       const focusedOption = interaction.options.getFocused(true);
       // if field is an autocomplete, retrieve valid options

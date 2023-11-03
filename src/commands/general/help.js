@@ -22,14 +22,6 @@ export default class PingCommand extends Command {
               name: `@${process.env.BOT_NAME}`,
               value: `@ mention ${process.env.BOT_NAME} and it will reply`,
             },
-            // {
-            //   name: '/play',
-            //   value: 'Lets you speak, act, and move as your character',
-            // },
-            // {
-            //   name: '/options',
-            //   value: 'Manage your characters and other settings',
-            // },
             {
               name: '/write',
               value: 'Writes some text in response to a prompt',
@@ -38,14 +30,28 @@ export default class PingCommand extends Command {
               name: '/imagine',
               value: 'Generates an image in response to a prompt',
             },
+          ],
+        }, {
+          color: 0x7289da,
+          title: 'Player Commands',
+          description: `A list of ${process.env.BOT_NAME} commands.`,
+          fields: [
+            {
+              name: '/character',
+              value: 'Select and manage your characters.',
+            },
+            {
+              name: '/ic',
+              value: 'Lets you speak, act, and move as in character',
+            },
             // {
-            //   name: '/roll',
-            //   value: 'A simple dice roller',
+            //   name: '/ooc',
+            //   value: 'Lets you ... out of character',
             // },
-            // {
-            //   name: '/timestamp',
-            //   value: 'Reads a date and returns a timestamp',
-            // },
+            {
+              name: '/roll',
+              value: 'A simple dice roller',
+            },
           ],
         },
       ],

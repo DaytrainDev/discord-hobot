@@ -13,6 +13,7 @@ export default class ImagineCommand extends Command {
           type: ApplicationCommandOptionType.String,
           name: 'prompt',
           description: 'The prompt to respond to',
+          required: true,
         },
         {
           name: 'size',
@@ -58,7 +59,7 @@ export default class ImagineCommand extends Command {
     const response = rawResponse?.data?.[0];
 
     if (!response?.url) {
-      interaction.followUp({ content: 'Something went wrong, ping an admin for assistance' });
+      interaction.followUp({ content: 'Something went wrong, ping an admin for help' });
       return;
     }
 
