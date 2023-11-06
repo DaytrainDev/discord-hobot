@@ -9,7 +9,16 @@ export class ApiManager {
     const server = http.createServer((req, res) => {
       // TODO: build API for website
 
-      if (req.url === '/api/v0/') {
+      if (req.url === '/sso/v0/') {
+        // TODO: validate request
+        res.writeHead(200);
+
+        // TODO: process Api call with a service
+        // TODO: perform SSO
+
+        res.end('OK');
+      } else if (req.url === '/api/v0/') {
+        // TODO: validate request
         res.writeHead(200);
 
         // TODO: process Api call with a service

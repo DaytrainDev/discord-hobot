@@ -7,8 +7,8 @@ import puppeteer from 'puppeteer';
 export default class ShowUrlCommand extends Command {
   constructor(client) {
     super(client, {
-      name: 'showurl',
-      description: 'Play video in the current voice channel.',
+      name: 'testshowurl',
+      description: 'Render a web page and show it in chat.',
       type: ApplicationCommandType.ChatInput,
       options: [
         {

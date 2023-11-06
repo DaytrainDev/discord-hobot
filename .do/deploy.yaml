@@ -1,0 +1,6 @@
+spec:
+  name: api-hobot-app
+  services:
+  - name: server
+    features:
+      - buildpack-stack=ubuntu-22
