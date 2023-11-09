@@ -15,7 +15,7 @@ export default class PingCommand extends Command {
       embeds: [
         {
           color: 0x7289da,
-          title: 'General Commands',
+          title: 'Commands',
           description: `A list of ${process.env.BOT_NAME} commands.`,
           fields: [
             {
