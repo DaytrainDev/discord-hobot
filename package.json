@@ -23,7 +23,7 @@
     "lint:fix": "npx eslint src --fix",
     "develop": "cd src && node --max_old_space_size=512 --optimize_for_size --expose-gc --gc-interval=1 Launcher.js",
     "start": "npm i && cd dist && node Launcher.js",
-    "deploy:start": "npm i && node dist/Launcher.js",
+    "deploy:start": "npm run start",
     "docker:down": "docker-compose down",
     "docker:up": "docker-compose up"
   },
