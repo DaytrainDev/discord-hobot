@@ -24,8 +24,7 @@
     "develop": "cd src && node --max_old_space_size=512 --optimize_for_size --expose-gc --gc-interval=1 Launcher.js",
     "start": "npm i && cd dist && node Launcher.js",
     "deploy:start": "npm run start",
-    "docker:down": "docker-compose down",
-    "docker:up": "docker-compose up"
+    "deploy": "fly deploy"
   },
   "license": "MIT",
   "engines": {
@@ -57,6 +56,7 @@
     "winston": "3.8.1"
   },
   "devDependencies": {
+    "@flydotio/dockerfile": "^0.4.10",
     "eslint": "8.48.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-plugin-import": "2.25.2"

@@ -1,0 +1,11 @@
+# Files
+
+# Folders
+dist
+node_modules
+src/logs
+.idea
+
+# Dot files
+.env
+.env.*
