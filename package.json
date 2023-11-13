@@ -51,7 +51,7 @@
     "gpt-3-encoder": "^1.1.4",
     "libsodium-wrappers": "^0.7.11",
     "mongodb": "^6.0.0",
-    "node-cron": "^3.0.2",
+    "node-cron": "^3.0.3",
     "openai": "^4.5.0",
     "puppeteer": "^21.3.6",
     "winston": "3.8.1"
