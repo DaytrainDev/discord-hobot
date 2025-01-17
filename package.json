@@ -28,7 +28,7 @@
   },
   "license": "MIT",
   "engines": {
-    "node": "^18.17.1"
+    "node": "^v20.12.2"
   },
   "author": "Daytrain",
   "dependencies": {
